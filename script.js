@@ -10,6 +10,35 @@ async function checkWeather (city){
 
     console.log(data);
 
+    var weatherCondition = data.weather[0].main;
+
+    const picture = document.querySelector(".weather-icon");
+
+    switch (weatherCondition){
+        case 'Clear':
+            picture.src = "images/clear.png";
+            break;
+        case 'Clouds':
+            picture.src = "images/clouds.png";
+            break;
+         case 'Drizzle':
+            picture.src = "images/drizzle.png";
+            break;
+        case 'Mist':
+            picture.src = "images/mist.png";
+            break;
+        case 'Rain':
+            picture.src = "images/rain.png";
+            break;
+        case 'Snow':
+            picture.src = "images/snow.png";
+            break;
+    }
+
+    if(data.main.temp<0){
+        picture.src = "images/snow.png";
+    }
+
     document.querySelector(".city").innerHTML = data.name;
     document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
     document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
