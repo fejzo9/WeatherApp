@@ -43,6 +43,11 @@ async function checkWeather (city){
     document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
     document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
     document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+    let country = data.sys.country;
+    const countryIcon = document.querySelector(".country-icon");
+    console.log(country);
+    countryIcon.src = "images/zastave/" + country.toLowerCase() + ".png";
 }
 
 searchBtn.addEventListener("click", ()=> {
