@@ -5,9 +5,36 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Connecting to MongoDB
-mongoose.connect('mongodb://localhost:27017/weatherDB', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+//mongoose.set('useCreateIndex', true);
 
+// Connecting to MongoDB
+mongoose.connect('mongodb://localhost:27017/weatherDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const weatherDataSchema = new mongoose.Schema({
+    city: String,
+    country: String,
+    searchQuery: String,
+    temperature: Number,
+    timestamp: { type: Date, default: Date.now }
+  });
+  const WeatherData = mongoose.model('WeatherData', weatherDataSchema);
+
+  const newWeatherData = new WeatherData({
+    city: 'Sarajevo',
+    country: 'Bosna i Hercegovina',
+    searchQuery: '512mi1r2mirf12idim12t1t12fvqch',
+    temperature: 25
+  });
+
+  newWeatherData.save()
+  .then(result => {
+    console.log('Podaci spremljeni u bazu:', result);
+  })
+  .catch(error => {
+    console.error('Greška prilikom spremanja podataka:', error);
+  });
+
+  /*
 //Defining model for data
 const WeatherData = mongoose.model('WeatherData', {
     city: String,
@@ -15,7 +42,9 @@ const WeatherData = mongoose.model('WeatherData', {
     searchQuery: String,
     temperature: Number,
     timestamp: {type:Date, default: Date.now}
-});
+});*/
+
+
 
 /*
 * Middleware for analyzing JSON data
