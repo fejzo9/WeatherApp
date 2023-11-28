@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Connecting to MongoDB
 mongoose.connect('mongodb://localhost:27017/weatherDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
+/*
 const weatherDataSchema = new mongoose.Schema({
     city: String,
     country: String,
@@ -17,6 +18,7 @@ const weatherDataSchema = new mongoose.Schema({
     temperature: Number,
     timestamp: { type: Date, default: Date.now }
   });
+
   const WeatherData = mongoose.model('WeatherData', weatherDataSchema);
 
   const newWeatherData = new WeatherData({
@@ -33,8 +35,9 @@ const weatherDataSchema = new mongoose.Schema({
   .catch(error => {
     console.error('Greška prilikom spremanja podataka:', error);
   });
+*/
 
-  /*
+
 //Defining model for data
 const WeatherData = mongoose.model('WeatherData', {
     city: String,
@@ -42,9 +45,7 @@ const WeatherData = mongoose.model('WeatherData', {
     searchQuery: String,
     temperature: Number,
     timestamp: {type:Date, default: Date.now}
-});*/
-
-
+});
 
 /*
 * Middleware for analyzing JSON data
