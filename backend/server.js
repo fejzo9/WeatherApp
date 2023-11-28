@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connecting to MongoDB
-mongoose.connect('mongodb://localhost:27017/index.html', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/weatherDB', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 //Defining model for data
 const WeatherData = mongoose.model('WeatherData', {
@@ -14,7 +14,7 @@ const WeatherData = mongoose.model('WeatherData', {
     country: String,
     searchQuery: String,
     temperature: Number,
-    timestamp: {type:Data, default: Data.now}
+    timestamp: {type:Date, default: Date.now}
 });
 
 /*
@@ -42,5 +42,5 @@ app.post('/weather', async(req,res)=>{
 
 //Starting a server
 app.listen(PORT, () => {
-    console.log('Server running on port ${PORT}');
+    console.log('Server running on port ' + PORT);
 });
